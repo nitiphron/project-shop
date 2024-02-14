@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  username    String        @db.VarChar(30) @unique
+  password    String        @db.VarChar(72)
+  email       String?
+  first_name  String        
+  last_name   String        
+  address     String        
+  phone       Int    
+  Cart        Cart[]
+  Order       Order[]
+
+  @@map("users")
+}
+
+model Order {
+  id              Int      @id @default(autoincrement())
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId          Int      @map("user_id")
+  order_date      DateTime
+  totalamount     String
+  status          String
+  shipping        Shipping[]
+  orderDetails    OrderDetail[]  // Define the opposite relation field here
+  payment         Payment[]
+
+  @@map("order")
+}
+
+model Cart {
+  id             Int          @id @default(autoincrement())
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId         Int          @map("user_id")
+  product        Product[]    // Define the relation without onDelete or onUpdate here
+  quantity       Int
+
+  @@map("cart")
+}
+
+model Product {
+  id               Int        @id @default(autoincrement())
+  product_name     String
+  description      String
+  price            Int
+  stockquantity    Int
+  cart             Cart[]     // Remove onDelete and onUpdate from here
+  cartId           Int        @map("cart_id")
+  category         Category[]
+  orderDetails     OrderDetail[]  // Define the opposite relation field here
+
+  @@map("product")
+}
+
+model Shipping {
+    id            Int     @id @default(autoincrement())
+    phone         String
+    email         String?
+    order         Order    @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    orderId       Int     @map("order_id")
+    
+    @@map("shipping")
+}
+
+model OrderDetail {
+    id            Int             @id @default(autoincrement())
+    quantity      Int
+    subtotal      Int
+    order         Order           @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    orderId       Int             @map("order_id")
+    product       Product         @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    productId     Int             @map("product_id")
+
+    @@map("orderdetail")
+}
+
+model Payment {
+    id            Int      @id @default(autoincrement())
+    paymentDate   DateTime @default(now()) @map("payment_date")
+    paymentMethod String   @map("payment_method")
+    amount        Float    @map("amount")
+    order         Order    @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    orderId       Int
+
+    @@map("payment")
+}
+
+model Category {
+  id                 Int             @id @default(autoincrement())
+  category_name      String
+  Product            Product[]
+
+  @@map("category")
+}
