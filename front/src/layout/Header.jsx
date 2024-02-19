@@ -1,9 +1,10 @@
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { FaUser } from 'react-icons/fa';
 import useAuth from '../hooks/useAuth';
 
 const guestNav = [
-  { to: '/', text: 'Login' },
-  { to: '/register', text: 'Sign up' },
+  { to: '/', icon: <FaUser /> },
 ];
 
 const userNav = [
@@ -25,8 +26,9 @@ export default function Header() {
     <nav className="bg-sky-400 border-gray-200 dark:bg-sky-400">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white uppercase">M-shop</span>
-        </Link>
+  <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white uppercase">M-shop</span>
+</Link>
+
         
         <ul className="flex md:order-2">
           <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1">
@@ -56,7 +58,10 @@ export default function Header() {
         <ul className="flex md:order-2 space-x-4">
           {finalNav.map((el, index) => (
             <li key={index}>
-              <Link to={el.to} className="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">{el.text}</Link>
+              <Link to={el.to} className="flex items-center space-x-1 text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
+                {el.icon}
+                <span>{el.text}</span>
+              </Link>
             </li>
           ))}
         </ul>
