@@ -12,8 +12,26 @@ const userData = [
     last_name : 'chaisue',
     address : '156/10',
     phone : 654743544
+  },
+
+  {
+    username : 'hard',
+    password : password,
+    email: 'hard@gmail.com',
+    first_name : 'nit',
+    last_name : 'c',
+    address : '156/10',
+    phone : 896546315
   }
     
+]
+
+const todoData = [
+  { title:'Learn HTML', dueDate: new Date(), userId: 1 },
+  { title:'Learn CSS', dueDate: new Date(), userId: 2 },
+  { title:'Learn JS', dueDate: new Date(), userId: 3 },
+  { title:'Learn React', dueDate: new Date(), userId: 4 },
+
 ]
 
 
@@ -22,7 +40,9 @@ const run = async () => {
   await prisma.user.createMany({
     data : userData
   })
-
+  await prisma.todo.createMany({
+    data : todoData
+  })
 }
 
 run()

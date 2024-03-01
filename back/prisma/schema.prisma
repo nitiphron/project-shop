@@ -21,6 +21,7 @@ model User {
   phone       Int    
   Cart        Cart[]
   Order       Order[]
+  todos       Todo[]
 
   @@map("users")
 }
@@ -102,4 +103,23 @@ model Category {
   Product            Product[]
 
   @@map("category")
+}
+
+model Todo {
+  id          Int           @id @default(autoincrement())
+  title       String        @db.VarChar(150)
+  status      Status        @default(PENDING)
+  dueDate     DateTime      @db.Date @map("due_date")
+  userId      Int           @map("user_id")
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime      @default(now()) @db.Timestamp(0) @map("created_at")
+  updatedAt   DateTime      @updatedAt @db.Timestamp(0) @map("updated_at")
+
+  @@map("todos")
+}
+
+enum Status {
+  PENDING
+  DOING
+  DONE
 }

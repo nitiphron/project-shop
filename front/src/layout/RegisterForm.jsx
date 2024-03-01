@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 
 export default function RegisterForm() {
   const [input, setInput] = useState({
-    name: "",
-    lastName: "",
-    address: "",
-    phone: "",
     username: "",
     password: "",
+    email: "",
+    first_name: "", 
+    last_name: "", 
+    address: "",
+    phone: ""
   });
 
   const handleChange = (e) => {
@@ -37,12 +38,12 @@ export default function RegisterForm() {
         <div className="flex gap-4">
           <div className="w-1/2">
             <label className="block text-left">
-              <span className="text-gray-800 Font">name</span>
+              <span className="text-gray-800 Font">first_name</span> {/* แก้ข้อความจาก "name" เป็น "First Name" */}
               <input
                 type="text"
                 className="form-input mt-1 block w-full h-10 border rounded-md"
-                name="name"
-                value={input.name}
+                name="first_name"
+                value={input.first_name}
                 onChange={handleChange}
               />
             </label>
@@ -50,22 +51,35 @@ export default function RegisterForm() {
 
           <div className="w-1/2 ">
             <label className="block text-left">
-              <span className="text-gray-800 Font">last-name</span>
+              <span className="text-gray-800 Font">last_name</span> {/* แก้ข้อความจาก "last-name" เป็น "Last Name" */}
               <input
                 type="text"
                 className="form-input mt-1 block w-full border rounded-md h-12"
-                name="lastName"
-                value={input.lastName}
+                name="last_name"
+                value={input.last_name}
                 onChange={handleChange}
               />
             </label>
           </div>
         </div>
-        
+
         <div className="flex gap-4">
           <div className="w-1/2">
             <label className="block text-left">
-              <span className="text-gray-800 Font">phone</span>
+              <span className="text-gray-800 Font">Email</span> {/* เพิ่ม input field สำหรับอีเมล */}
+              <input
+                type="email"
+                className="form-input mt-1 block w-full border rounded-md h-12"
+                name="email"
+                value={input.email}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+
+          <div className="w-1/2">
+            <label className="block text-left">
+              <span className="text-gray-800 Font">Phone</span>
               <input
                 type="text"
                 className="form-input mt-1 block w-full border rounded-md h-12"
@@ -75,9 +89,12 @@ export default function RegisterForm() {
               />
             </label>
           </div>
+        </div>
+
+        <div className="flex gap-4">
           <div className="w-1/2">
             <label className="block text-left">
-              <span className="text-gray-800 Font">address</span>
+              <span className="text-gray-800 Font">Address</span>
               <input
                 type="text"
                 className="form-input mt-1 block w-full border rounded-md h-12"
@@ -87,9 +104,7 @@ export default function RegisterForm() {
               />
             </label>
           </div>
-        </div>
 
-        <div className="flex gap-4">
           <div className="w-1/2">
             <label className="block text-left">
               <span className="text-gray-800 Font">Username</span>
@@ -102,6 +117,7 @@ export default function RegisterForm() {
               />
             </label>
           </div>
+
           <div className="w-1/2">
             <label className="block text-left">
               <span className="text-gray-800 Font">Password</span>
@@ -115,14 +131,15 @@ export default function RegisterForm() {
             </label>
           </div>
         </div>
+
         <div className="tn btn-outline btn-info mt-7 ">
           <button
             type="submit"
-            className="btn bg-blue-500 text-blue rounded-[30px] Font w-40">
-            Sing-in
+            className="btn bg-blue-500 text-blue rounded-[30px] Font w-40"
+          >
+            Sign-up {/* แก้ข้อความจาก "Sing-in" เป็น "Sign-up" */}
           </button>
         </div>
-
       </form>
     </div>
   );
