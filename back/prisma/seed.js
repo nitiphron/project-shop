@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 
 const password = bcrypt.hashSync('123456')
 const userData = [
-    {
+  {
     username : 'min',
     password : password,
     email: 'min@gmail.com',
@@ -23,17 +23,14 @@ const userData = [
     address : '156/10',
     phone : 896546315
   }
-    
 ]
 
 const todoData = [
   { title:'Learn HTML', dueDate: new Date(), userId: 1 },
-  { title:'Learn CSS', dueDate: new Date(), userId: 2 },
-  { title:'Learn JS', dueDate: new Date(), userId: 3 },
-  { title:'Learn React', dueDate: new Date(), userId: 4 },
-
+  { title:'Learn CSS', dueDate: new Date(), userId: 1 },
+  { title:'Learn JS', dueDate: new Date(), userId: 2 },
+  { title:'Learn React', dueDate: new Date(), userId: 2 }, // แก้ไข userId เป็น 2
 ]
-
 
 
 const run = async () => {
