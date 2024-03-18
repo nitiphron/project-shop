@@ -35,7 +35,7 @@ export default function Product() {
             {/* <button className="btn btn-primary" onClick={(e) => { e.stopPropagation(); console.log('Details clicked:', 1); }}>
               ดูรายละเอียด
             </button> */}
-            <Link to="/cart" className="btn btn-primary">Go to Cart</Link>
+            <Link to="/cart1" className="btn btn-primary">Go to Cart</Link>
           </div>
         </div>
       </button>
@@ -62,7 +62,7 @@ export default function Product() {
             {/* <button className="btn btn-primary" onClick={(e) => { e.stopPropagation(); console.log('Details clicked:', 2); }}>
               ดูรายละเอียด
             </button> */}
-            <Link to="/cart" className="btn btn-primary">Go to Cart</Link>
+            <Link to="/cart2" className="btn btn-primary">Go to Cart</Link>
           </div>
         </div>
       </button>
@@ -91,7 +91,7 @@ export default function Product() {
             {/* <button className="btn btn-primary" onClick={(e) => { e.stopPropagation(); console.log('Details clicked:', 2); }}>
               ดูรายละเอียด
             </button> */}
-            <Link to="/cart" className="btn btn-primary">Go to Cart</Link>
+            <Link to="/cart3" className="btn btn-primary">Go to Cart</Link>
           </div>
         </div>
       </button>
@@ -121,7 +121,7 @@ export default function Product() {
             {/* <button className="btn btn-primary" onClick={(e) => { e.stopPropagation(); console.log('Details clicked:', 2); }}>
               ดูรายละเอียด
             </button> */}
-            <Link to="/cart" className="btn btn-primary">Go to Cart</Link>
+            <Link to="/cart4" className="btn btn-primary">Go to Cart</Link>
           </div>
         </div>
       </button>
@@ -148,7 +148,7 @@ export default function Product() {
             {/* <button className="btn btn-primary" onClick={(e) => { e.stopPropagation(); console.log('Details clicked:', 2); }}>
               ดูรายละเอียด
             </button> */}
-            <Link to="/cart" className="btn btn-primary">Go to Cart</Link>
+            <Link to="/cart5" className="btn btn-primary">Go to Cart</Link>
           </div>
         </div>
       </button>
@@ -176,7 +176,7 @@ export default function Product() {
             {/* <button className="btn btn-primary" onClick={(e) => { e.stopPropagation(); console.log('Details clicked:', 2); }}>
               ดูรายละเอียด
             </button> */}
-            <Link to="/cart" className="btn btn-primary">Go to Cart</Link>
+            <Link to="/cart6" className="btn btn-primary">Go to Cart</Link>
           </div>
         </div>
       </button>
@@ -206,7 +206,7 @@ export default function Product() {
             {/* <button className="btn btn-primary" onClick={(e) => { e.stopPropagation(); console.log('Details clicked:', 2); }}>
               ดูรายละเอียด
             </button> */}
-            <Link to="/cart" className="btn btn-primary">Go to Cart</Link>
+            <Link to="/cart7" className="btn btn-primary">Go to Cart</Link>
           </div>
         </div>
       </button>
@@ -233,7 +233,7 @@ export default function Product() {
             {/* <button className="btn btn-primary" onClick={(e) => { e.stopPropagation(); console.log('Details clicked:', 2); }}>
               ดูรายละเอียด
             </button> */}
-            <Link to="/cart" className="btn btn-primary">Go to Cart</Link>
+            <Link to="/cart8" className="btn btn-primary">Go to Cart</Link>
           </div>
         </div>
       </button>
@@ -259,7 +259,7 @@ export default function Product() {
             {/* <button className="btn btn-primary" onClick={(e) => { e.stopPropagation(); console.log('Details clicked:', 2); }}>
               ดูรายละเอียด
             </button> */}
-            <Link to="/cart" className="btn btn-primary">Go to Cart</Link>
+            <Link to="/cart9" className="btn btn-primary">Go to Cart</Link>
           </div>
         </div>
       </button>
