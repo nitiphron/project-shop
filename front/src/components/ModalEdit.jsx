@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 export default function ModalEdit(props) {
   const { el, closeModal, setTrigger } = props;
   const [input, setInput] = useState({
-    title: "",
+    product_name: "",
     dueDate: new Date().toISOString().split("T")[0],
     status: "",
   });
@@ -17,7 +17,7 @@ export default function ModalEdit(props) {
     }
     const run = async () => {
       const token = localStorage.getItem('token')
-      const rs = await axios.get('http://localhost:8889/todos/all-status', {
+      const rs = await axios.get('http://localhost:8889/products/all-status', {
         headers : { Authorization : `Bearer ${token}`}
       })
       localStorage.setItem('status', JSON.stringify(rs.data.status))
@@ -28,7 +28,7 @@ export default function ModalEdit(props) {
 
   useEffect(() => {
     setInput({
-      title: el?.title,
+      product_name: el?.product_name,
       dueDate: new Date(el ? el?.dueDate : null).toISOString().split("T")[0],
       status: el?.status,
     });
@@ -43,7 +43,7 @@ export default function ModalEdit(props) {
 
       const output = { ...input, dueDate: new Date(input.dueDate) };
       const token = localStorage.getItem("token");
-      const rs = await axios.put(`http://localhost:8889/todos/${el.id}`, output, {
+      const rs = await axios.put(`http://localhost:8889/products/${el.id}`, output, {
         headers : { Authorization : `Bearer ${token}`}
       })
       // alert("Update OK");
@@ -59,14 +59,14 @@ export default function ModalEdit(props) {
         <form className="flex flex-col border rounded w-5/6 mx-auto p-4 gap-6" onSubmit={hdlSubmit}>
           <label className="form-control w-full ">
             <div className="label">
-              <span className="label-text">Todo title</span>
+              <span className="label-text">Product Name</span>
             </div>
             <input
               type="text"
               placeholder="Type here"
               className="input input-bordered w-full "
-              name="title"
-              value={input.title}
+              name="product_name"
+              value={input.product_name}
               onChange={hdlChange}
             />
           </label>

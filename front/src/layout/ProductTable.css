@@ -1,0 +1,49 @@
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-table th, .product-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.product-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.product-table td img {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: cover;
+}
+
+.edit-button, .delete-btn {
+  padding: 6px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: orange;
+  color: white;
+  border: none;
+}
+
+.delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+}
+
+.product-image {
+  max-width: 80px;
+  max-height: 80px;
+  object-fit: cover;
+}
+
+.btn-red {
+  background-color: red;
+  color: white;
+}

@@ -11,111 +11,98 @@ datasource db {
 }
 
 model User {
-  id          Int           @id @default(autoincrement())
-  username    String        @db.VarChar(30) @unique
-  password    String        @db.VarChar(72)
+  id          Int      @id @default(autoincrement())
+  username    String   @unique
+  password    String
   email       String?
-  first_name  String        
-  last_name   String        
-  address     String        
-  phone       Int    
+  first_name  String
+  last_name   String
+  address     String
+  phone       Int
   Cart        Cart[]
   Order       Order[]
-  todos       Todo[]
+  products    Product[] 
 
   @@map("users")
 }
 
 model Order {
-  id              Int      @id @default(autoincrement())
-  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId          Int      @map("user_id")
+  id              Int          @id @default(autoincrement())
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId          Int          @map("user_id")
   order_date      DateTime
   totalamount     String
   status          String
   shipping        Shipping[]
-  orderDetails    OrderDetail[]  // Define the opposite relation field here
+  orderDetails    OrderDetail[]
   payment         Payment[]
 
-  @@map("order")
+  @@map("orders")
 }
 
 model Cart {
-  id             Int          @id @default(autoincrement())
-  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId         Int          @map("user_id")
-  product        Product[]    // Define the relation without onDelete or onUpdate here
-  quantity       Int
+  id             Int      @id @default(autoincrement())
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId         Int      @map("user_id")
+  products       Product[]
 
-  @@map("cart")
+  @@map("carts")
 }
 
 model Product {
-  id               Int        @id @default(autoincrement())
+  id               Int          @id @default(autoincrement())
   product_name     String
   description      String
   price            Int
   stockquantity    Int
-  cart             Cart[]     // Remove onDelete and onUpdate from here
-  cartId           Int        @map("cart_id")
+  cart             Cart[]
+  cartId           Int          @map("cart_id")
   category         Category[]
-  orderDetails     OrderDetail[]  // Define the opposite relation field here
+  orderDetails     OrderDetail[]
+  users            User[]       
 
-  @@map("product")
+  @@map("products")
 }
 
 model Shipping {
-    id            Int     @id @default(autoincrement())
-    phone         String
-    email         String?
-    order         Order    @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-    orderId       Int     @map("order_id")
-    
-    @@map("shipping")
+  id            Int      @id @default(autoincrement())
+  phone         String
+  email         String?
+  order         Order    @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  orderId       Int      @map("order_id")
+  
+  @@map("shipping")
 }
 
 model OrderDetail {
-    id            Int             @id @default(autoincrement())
-    quantity      Int
-    subtotal      Int
-    order         Order           @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-    orderId       Int             @map("order_id")
-    product       Product         @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-    productId     Int             @map("product_id")
+  id            Int      @id @default(autoincrement())
+  quantity      Int
+  subtotal      Int
+  order         Order    @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  orderId       Int      @map("order_id")
+  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  productId     Int      @map("product_id")
 
-    @@map("orderdetail")
+  @@map("orderdetails")
 }
 
 model Payment {
-    id            Int      @id @default(autoincrement())
-    paymentDate   DateTime @default(now()) @map("payment_date")
-    paymentMethod String   @map("payment_method")
-    amount        Float    @map("amount")
-    order         Order    @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-    orderId       Int
+  id            Int      @id @default(autoincrement())
+  paymentDate   DateTime @default(now()) @map("payment_date")
+  paymentMethod String   @map("payment_method")
+  amount        Float
+  order         Order    @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  orderId       Int
 
-    @@map("payment")
+  @@map("payment")
 }
 
 model Category {
-  id                 Int             @id @default(autoincrement())
+  id                 Int        @id @default(autoincrement())
   category_name      String
   Product            Product[]
 
-  @@map("category")
-}
-
-model Todo {
-  id          Int           @id @default(autoincrement())
-  title       String        @db.VarChar(150)
-  status      Status        @default(PENDING)
-  dueDate     DateTime      @db.Date @map("due_date")
-  userId      Int           @map("user_id")
-  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt   DateTime      @default(now()) @db.Timestamp(0) @map("created_at")
-  updatedAt   DateTime      @updatedAt @db.Timestamp(0) @map("updated_at")
-
-  @@map("todos")
+  @@map("categories")
 }
 
 enum Status {
